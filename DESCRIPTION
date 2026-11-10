@@ -1,0 +1,18 @@
+Package: waveform
+Title: Simulating One-Dimensional Functional Data
+Version: 1.0.0
+Authors@R:
+    person("Mohammad Reza", "Seydi", role = c("aut", "cre"))
+Description: Tools for simulating one-dimensional functional data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+    fda
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr

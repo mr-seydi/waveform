@@ -1,0 +1,8 @@
+bibentry(
+  bibtype = "Manual",
+  title = "waveform: Simulating One-Dimensional Functional Data",
+  author = person(given = "Mohammad Reza", family = "Seydi"),
+  year = "2026",
+  note = "R package, version 1.0.0",
+  url = "https://github.com/mr-seydi/waveform"
+)
