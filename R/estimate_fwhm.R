@@ -6,7 +6,7 @@
 #' subtracting each group's estimated mean function.
 #'
 #' At each evaluation point `t`, the local derivative ratio is
-#' `lambda(t) = SS[r'(t)] / SS[r(t)]`, where sums of squares are taken across
+#' `lambda(t) = SS[r_derivative(t)] / SS[r(t)]`, where sums of squares are taken across
 #' curves. The local FWHM is `sqrt(4 * log(2) / lambda(t))`. The returned global
 #' estimate is the reciprocal of the mean resels per node,
 #' `1 / mean(sqrt(lambda(t) / (4 * log(2))))`, over points with nonzero

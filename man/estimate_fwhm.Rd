@@ -23,7 +23,7 @@ subtracting each group's estimated mean function.
 }
 \details{
 At each evaluation point \code{t}, the local derivative ratio is
-\code{lambda(t) = SS[r'(t)] / SS[r(t)]}, where sums of squares are taken across
+\code{lambda(t) = SS[r_derivative(t)] / SS[r(t)]}, where sums of squares are taken across
 curves. The local FWHM is \code{sqrt(4 * log(2) / lambda(t))}. The returned global
 estimate is the reciprocal of the mean resels per node,
 \code{1 / mean(sqrt(lambda(t) / (4 * log(2))))}, over points with nonzero
