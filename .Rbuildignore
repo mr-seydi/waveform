@@ -3,4 +3,8 @@
 ^renv\.lock$
 ^\.git$
 ^\.github$
+^.*\.DS_Store$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
 ^waveform\.Rproj$

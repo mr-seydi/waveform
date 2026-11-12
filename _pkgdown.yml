@@ -1,0 +1,27 @@
+url: https://mr-seydi.github.io/waveform/
+
+template:
+  bootstrap: 5
+
+navbar:
+  structure:
+    left: [reference, articles]
+    right: [github]
+  components:
+    reference:
+      text: Reference
+      href: reference/index.html
+    articles:
+      text: Articles
+      menu:
+      - text: Getting started
+        href: articles/getting-started.html
+    github:
+      icon: fa-github
+      aria-label: View source on GitHub
+      href: https://github.com/mr-seydi/waveform
+
+articles:
+- title: Tutorials
+  contents:
+  - getting-started

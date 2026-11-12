@@ -8,12 +8,14 @@ smooth_gaussian_curves(data, mu, sig, fwhm)
 }
 \arguments{
 \item{data}{A finite numeric matrix with evaluation points in rows and
-curves in columns, such as the output of \code{gaussian_swn()}.}
+curves in columns, such as the output of \code{\link[=gaussian_swn]{gaussian_swn()}}.}
 
-\item{mu}{Single finite number giving the target mean for all curves.}
+\item{mu}{A finite number, or a numeric vector with one target mean per
+evaluation point. A scalar is used at every point and for every curve.}
 
-\item{sig}{Single positive finite number giving the target standard
-deviation for all curves.}
+\item{sig}{A positive finite number, or a numeric vector with one target
+standard deviation per evaluation point. A scalar is used at every point
+and for every curve.}
 
 \item{fwhm}{Positive finite scalar giving the full width at half maximum
 used for smoothing.}
@@ -23,7 +25,7 @@ A numeric matrix with the same dimensions as \code{data}: evaluation
 points in rows and curves in columns.
 }
 \description{
-Smooths the curves in a matrix produced by \code{gaussian_swn()}, then shifts
+Smooths the curves in a matrix produced by \code{\link[=gaussian_swn]{gaussian_swn()}}, then shifts
 and scales them to the requested mean and standard deviation. The same
 input data can be passed with different \code{fwhm} values to compare smoothness.
 }
@@ -34,4 +36,12 @@ smooth_2 <- smooth_gaussian_curves(noise, mu = 0, sig = 1, fwhm = 2)
 smooth_8 <- smooth_gaussian_curves(noise, mu = 0, sig = 1, fwhm = 8)
 dim(smooth_2) # 100 3
 dim(smooth_8) # 100 3
+
+# The target mean and SD can vary across evaluation points.
+smooth_varied <- smooth_gaussian_curves(
+  noise,
+  mu = seq(-1, 1, length.out = nrow(noise)),
+  sig = seq(0.5, 1.5, length.out = nrow(noise)),
+  fwhm = 4
+)
 }

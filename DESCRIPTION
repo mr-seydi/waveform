@@ -1,22 +1,26 @@
 Package: waveform
 Title: Simulating One-Dimensional Functional Data
-Version: 1.0.0
+Version: 1.1.0
 Authors@R:
     person(
       "Mohammad Reza", "Seydi",
-      email = "93880183+mr-seydi@users.noreply.github.com",
+      email = "mohammad.seydi@umu.se",
       role = c("aut", "cre")
     )
 Description: Tools for simulating one-dimensional functional data.
+URL: https://mr-seydi.github.io/waveform/, https://github.com/mr-seydi/waveform
+BugReports: https://github.com/mr-seydi/waveform/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
+LazyData: true
 Imports:
     fda
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
 Suggests:
     knitr,
+    pkgdown,
     rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+Config/roxygen2/version: 8.1.1

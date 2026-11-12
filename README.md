@@ -1,11 +1,14 @@
-# waveform
+# waveform <img src="man/figures/logo.png" align="right" height="139" alt="waveform hex sticker" />
 
 **waveform** is an R package for generating and working with one-dimensional
 functional data. It provides Gaussian white-noise curves, smoothed Gaussian
 curves, simple signal shapes, a residual-field smoothness estimate, and tools
 for evaluating curves on a new grid.
 
-**Version:** 1.0.0 · **Author:** Mohammad Reza Seydi
+**Version:** 1.1.0 · **Author:** Mohammad Reza Seydi
+
+[Package website](https://mr-seydi.github.io/waveform/) · [Function
+reference](https://mr-seydi.github.io/waveform/reference/)
 
 ## What it can do
 
@@ -18,6 +21,13 @@ for evaluating curves on a new grid.
 - Estimate the FWHM of a residual random field.
 - Fit curves with an `fda` B-spline basis and evaluate them on a denser or
   sparser grid.
+- Use the included male and female thorax obliquity curves as example data.
+
+## Example data
+
+The package includes thorax obliquity curves from 65 male and 71 female
+participants. Each dataset has 101 evaluation points per participant. See
+`?male` and `?female` for details and the source citation.
 
 ## Install from GitHub
 
@@ -41,7 +51,9 @@ Curve matrices use the same orientation throughout the package:
 Thus `gaussian_swn(number_of_curves, num_points)` returns a matrix with
 `num_points` rows and `number_of_curves` columns. `smooth_gaussian_curves()`
 preserves these dimensions, and `dense_data()` returns one column per input
-curve.
+curve. In the smoothing and curve-generation functions, `mu` and `sig` can be
+scalars or vectors with one value per evaluation point; pointwise vectors are
+shared across curves.
 
 ## Functions
 
@@ -66,7 +78,7 @@ provided here in BibTeX format:
   title  = {waveform: Simulating One-Dimensional Functional Data},
   author = {Mohammad Reza Seydi},
   year   = {2026},
-  note   = {R package, version 1.0.0},
+  note   = {R package, version 1.1.0},
   url    = {https://github.com/mr-seydi/waveform}
 }
 ```

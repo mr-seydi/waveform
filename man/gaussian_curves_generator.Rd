@@ -12,10 +12,12 @@ gaussian_curves_generator(sample_size, num_points, mu, sig, fwhm)
 \item{num_points}{Positive integer giving the number of evaluation points
 per curve.}
 
-\item{mu}{Single finite number giving the target mean for all curves.}
+\item{mu}{A finite number, or a numeric vector with one target mean per
+evaluation point. A scalar is used at every point and for every curve.}
 
-\item{sig}{Single positive finite number giving the target standard
-deviation for all curves.}
+\item{sig}{A positive finite number, or a numeric vector with one target
+standard deviation per evaluation point. A scalar is used at every point
+and for every curve.}
 
 \item{fwhm}{Positive finite scalar giving the full width at half maximum
 used for smoothing.}
@@ -38,6 +40,14 @@ result <- gaussian_curves_generator(
   sample_size = 5, num_points = 100, mu = 0, sig = 1, fwhm = 4
 )
 dim(result$curves) # 100 5
+
+# The target mean and SD can vary across evaluation points.
+varied <- gaussian_curves_generator(
+  sample_size = 3, num_points = 100,
+  mu = seq(-1, 1, length.out = 100),
+  sig = seq(0.5, 1.5, length.out = 100), fwhm = 4
+)
+dim(varied$curves) # 100 3
 
 one_curve <- gaussian_curves_generator(
   sample_size = 1, num_points = 100, mu = 0, sig = 1, fwhm = 4
