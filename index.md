@@ -90,18 +90,3 @@ also provided here in BibTeX format:
   url    = {https://github.com/mr-seydi/waveform}
 }
 ```
-
-## Development
-
-Source files live in `R/`, help pages in `man/`, and tests in
-`tests/testthat/`. Long-form guides can be added to `vignettes/`.
-
-Use `devtools::document()` to update help pages and `devtools::check()`
-to check the package. To manage the project library with `renv`,
-initialize it from the package root:
-
-``` r
-
-install.packages("renv")
-renv::init()
-```
