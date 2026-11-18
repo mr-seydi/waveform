@@ -36,7 +36,9 @@ gaussian_curves_generator(sample_size, num_points, mu, sig, fwhm)
 - fwhm:
 
   Positive finite scalar giving the full width at half maximum used for
-  smoothing.
+  smoothing, in evaluation-grid steps (adjacent points are treated as
+  one unit apart). See the getting-started vignette for conversion to
+  domain units.
 
 ## Value
 

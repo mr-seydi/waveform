@@ -32,7 +32,65 @@ standard deviation $`\sigma_K`$ and full width at half maximum is
 ```
 
 FWHM is the full width of the Gaussian kernel at half its maximum
-height. In the package, `fwhm` supplies this width.
+height. In the package, `fwhm` supplies this width in evaluation-grid
+steps.
+
+## FWHM and domain scale
+
+FWHM is a length scale; it is not inherently a percentage of the domain.
+The package functions receive the number of evaluation points, not the
+domain interval. They therefore treat adjacent points as one unit apart,
+and `fwhm` (as well as the result from
+[`estimate_fwhm()`](https://mr-seydi.github.io/waveform/reference/estimate_fwhm.md))
+is in grid-step units. To interpret it in the units of a particular
+domain, specify how the points map onto that domain.
+
+For a uniformly spaced grid of $`N`$ points spanning $`[a,b]`$, let
+$`L=b-a`$ be the domain length. The spacing between adjacent evaluation
+points is
+
+``` math
+\Delta x = \frac{L}{N-1}.
+```
+
+Here, $`\Delta x`$ (often written `dx`) is the distance between
+neighboring evaluation points. There are $`N-1`$ intervals between $`N`$
+points. If `fwhm_grid` is the FWHM in grid steps, its width in domain
+units is
+
+``` math
+\mathrm{FWHM}_{\mathrm{domain}}
+= \mathrm{FWHM}_{\mathrm{grid}}\,\Delta x.
+```
+
+For example, with 101 evaluation points:
+
+- On $`[0,1]`$, $`\Delta x=0.01`$. A package FWHM of 10 grid steps
+  corresponds to $`0.1`$ domain units.
+- On $`[0,100]`$, $`\Delta x=1`$. The same package FWHM corresponds to
+  10 domain units.
+
+In both cases, that width is 10% of the domain. More generally,
+
+``` math
+\mathrm{FWHM}_{\%}
+= 100\frac{\mathrm{FWHM}_{\mathrm{domain}}}{L}
+= 100\frac{\mathrm{FWHM}_{\mathrm{grid}}}{N-1}.
+```
+
+Conversely, if a desired FWHM is given in domain units, convert it to
+grid steps before passing it to a package function:
+
+``` math
+\mathrm{FWHM}_{\mathrm{grid}}
+= \frac{\mathrm{FWHM}_{\mathrm{domain}}}{\Delta x}.
+```
+
+Thus, for the same number of evaluation points, changing the domain
+labels changes the interpretation in domain units but not the generated
+discrete curves. For uniformly spaced grids with different numbers of
+points, convert the desired physical width using each grid’s own
+$`\Delta x`$.
 
 ## Curve layout
 

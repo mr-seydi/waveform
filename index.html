@@ -97,6 +97,7 @@
 <li><strong>Columns are curves.</strong></li>
 </ul>
 <p>Thus <code>gaussian_swn(number_of_curves, num_points)</code> returns a matrix with <code>num_points</code> rows and <code>number_of_curves</code> columns. <code><a href="reference/smooth_gaussian_curves.html">smooth_gaussian_curves()</a></code> preserves these dimensions, and <code><a href="reference/dense_data.html">dense_data()</a></code> returns one column per input curve. In the smoothing and curve-generation functions, <code>mu</code> and <code>sig</code> can be scalars or vectors with one value per evaluation point; pointwise vectors are shared across curves.</p>
+<p>The <code>fwhm</code> smoothing parameter and <code><a href="reference/estimate_fwhm.html">estimate_fwhm()</a></code> result are measured in grid steps, with adjacent evaluation points treated as one unit apart. See the <a href="https://mr-seydi.github.io/waveform/articles/getting-started.html#fwhm-and-domain-scale">FWHM and domain scale section in the getting-started guide</a> for conversion to domain units and percent of domain.</p>
 </div>
 <div class="section level2">
 <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>

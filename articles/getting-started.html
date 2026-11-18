@@ -98,7 +98,73 @@ and full width at half maximum is</p>
 \sigma_K = \frac{\mathrm{FWHM}}{\sqrt{8\ln 2}}.
 </annotation></semantics></math></p>
 <p>FWHM is the full width of the Gaussian kernel at half its maximum
-height. In the package, <code>fwhm</code> supplies this width.</p>
+height. In the package, <code>fwhm</code> supplies this width in
+evaluation-grid steps.</p>
+</div>
+<div class="section level2">
+<h2 id="fwhm-and-domain-scale">FWHM and domain scale<a class="anchor" aria-label="anchor" href="#fwhm-and-domain-scale"></a>
+</h2>
+<p>FWHM is a length scale; it is not inherently a percentage of the
+domain. The package functions receive the number of evaluation points,
+not the domain interval. They therefore treat adjacent points as one
+unit apart, and <code>fwhm</code> (as well as the result from
+<code><a href="../reference/estimate_fwhm.html">estimate_fwhm()</a></code>) is in grid-step units. To interpret it in
+the units of a particular domain, specify how the points map onto that
+domain.</p>
+<p>For a uniformly spaced grid of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+points spanning
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[a,b]</annotation></semantics></math>,
+let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mi>b</mi><mo>−</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">L=b-a</annotation></semantics></math>
+be the domain length. The spacing between adjacent evaluation points
+is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi><mo>=</mo><mfrac><mi>L</mi><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\Delta x = \frac{L}{N-1}.
+</annotation></semantics></math></p>
+<p>Here,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\Delta x</annotation></semantics></math>
+(often written <code>dx</code>) is the distance between neighboring
+evaluation points. There are
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">N-1</annotation></semantics></math>
+intervals between
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+points. If <code>fwhm_grid</code> is the FWHM in grid steps, its width
+in domain units is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">W</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">M</mi></mrow><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mrow></msub><mo>=</mo><msub><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">W</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">M</mi></mrow><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow></msub><mspace width="0.167em"></mspace><mi mathvariant="normal">Δ</mi><mi>x</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\mathrm{FWHM}_{\mathrm{domain}}
+= \mathrm{FWHM}_{\mathrm{grid}}\,\Delta x.
+</annotation></semantics></math></p>
+<p>For example, with 101 evaluation points:</p>
+<ul>
+<li>On
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0,1]</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi><mo>=</mo><mn>0.01</mn></mrow><annotation encoding="application/x-tex">\Delta x=0.01</annotation></semantics></math>.
+A package FWHM of 10 grid steps corresponds to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.1</mn><annotation encoding="application/x-tex">0.1</annotation></semantics></math>
+domain units.</li>
+<li>On
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>100</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0,100]</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\Delta x=1</annotation></semantics></math>.
+The same package FWHM corresponds to 10 domain units.</li>
+</ul>
+<p>In both cases, that width is 10% of the domain. More generally,</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">W</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">M</mi></mrow><mi>%</mi></msub><mo>=</mo><mn>100</mn><mfrac><msub><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">W</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">M</mi></mrow><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mrow></msub><mi>L</mi></mfrac><mo>=</mo><mn>100</mn><mfrac><msub><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">W</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">M</mi></mrow><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow></msub><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\mathrm{FWHM}_{\%}
+= 100\frac{\mathrm{FWHM}_{\mathrm{domain}}}{L}
+= 100\frac{\mathrm{FWHM}_{\mathrm{grid}}}{N-1}.
+</annotation></semantics></math></p>
+<p>Conversely, if a desired FWHM is given in domain units, convert it to
+grid steps before passing it to a package function:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">W</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">M</mi></mrow><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow></msub><mo>=</mo><mfrac><msub><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">W</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">M</mi></mrow><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mrow></msub><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\mathrm{FWHM}_{\mathrm{grid}}
+= \frac{\mathrm{FWHM}_{\mathrm{domain}}}{\Delta x}.
+</annotation></semantics></math></p>
+<p>Thus, for the same number of evaluation points, changing the domain
+labels changes the interpretation in domain units but not the generated
+discrete curves. For uniformly spaced grids with different numbers of
+points, convert the desired physical width using each grid’s own
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\Delta x</annotation></semantics></math>.</p>
 </div>
 <div class="section level2">
 <h2 id="curve-layout">Curve layout<a class="anchor" aria-label="anchor" href="#curve-layout"></a>
