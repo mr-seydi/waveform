@@ -14,10 +14,12 @@
 #'
 #' @param R Finite numeric matrix of curves, with evaluation points in rows and
 #'   curves in columns. At least two curves and two evaluation points are
-#'   required. The domain is assumed to have unit spacing.
+#'   required. The domain is assumed to have unit spacing, so adjacent points
+#'   are one grid step apart.
 #'
-#' @return A single positive number giving the estimated global FWHM, in
-#'   evaluation-point units.
+#' @return A single positive number giving the estimated global FWHM in
+#'   evaluation-grid steps. Convert to domain units using the spacing between
+#'   adjacent evaluation points; see the getting-started vignette.
 #' @examples
 #' set.seed(123)
 #' generated <- gaussian_curves_generator(

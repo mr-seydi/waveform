@@ -20,7 +20,9 @@ standard deviation per evaluation point. A scalar is used at every point
 and for every curve.}
 
 \item{fwhm}{Positive finite scalar giving the full width at half maximum
-used for smoothing.}
+used for smoothing, in evaluation-grid steps (adjacent points are treated
+as one unit apart). See the getting-started vignette for conversion to
+domain units.}
 }
 \value{
 A list with three components: \code{curves}, a matrix with evaluation

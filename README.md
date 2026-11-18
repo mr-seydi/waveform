@@ -55,6 +55,11 @@ curve. In the smoothing and curve-generation functions, `mu` and `sig` can be
 scalars or vectors with one value per evaluation point; pointwise vectors are
 shared across curves.
 
+The `fwhm` smoothing parameter and `estimate_fwhm()` result are measured in
+grid steps, with adjacent evaluation points treated as one unit apart. See the
+[FWHM and domain scale section in the getting-started guide](https://mr-seydi.github.io/waveform/articles/getting-started.html#fwhm-and-domain-scale)
+for conversion to domain units and percent of domain.
+
 ## Functions
 
 | Function | Purpose | Output |
